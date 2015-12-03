@@ -1,0 +1,17 @@
+@import "_base";
+
+$width: 600px;
+
+#ide-popup {
+  width: $width;
+  max-width: $width;
+}
+
+#ide-popup-header {
+  height: 30px;
+}
+
+// Button on the popup that redirects to new.html
+#btn-new {
+
+}

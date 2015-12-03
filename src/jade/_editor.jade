@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    include _assets
+    block title
+    link(rel='stylesheet' href='assets/css/editor.css')
+    script(type='application/javascript' src='assets/third-party/codemirror/mode/javascript/javascript.js')
+  body#ide-editor
+    header#ide-editor-header.row
+      img(src='assets/images/ide-logo-512.png')#ide-editor-logo.float-left
+      #ide-editor-file-container.row
+        div#ide-editor-file-location.small-2.large-2.columns Select
+        div#ide-editor-file-separator.small-4.large-1.columns /
+        span.small-6.large-8.columns
+          input#ide-editor-file-name(type='text' value='Untitled')
+
+      #ide-editor-options.float-right
+        a.button Test
+        a.button Test 2
+
+    .row
+      block content
+    script(type='application/javascript' src='assets/js/editor.js')

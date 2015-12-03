@@ -1,0 +1,39 @@
+@import "_base";
+
+#ide-editor-header {
+  height: 60px;
+
+  #ide-editor-file-location {
+    font-size: 28pt;
+    color: #9E9E9E;
+    margin-left: 10px;
+  }
+
+  #ide-editor-file-separator {
+    font-size: 28pt;
+    color: #9C9C9C;
+  }
+
+  #ide-editor-file-name {
+    font-size: 12pt;
+    margin: 5px auto;
+  }
+}
+
+#ide-editor-logo {
+  width: 50px;
+  height: 50px;
+}
+
+// Button to get back to the main page
+#btn-back {
+  width: 40px;
+  height: 40px;
+}
+
+// Button on the popup that redirects to new.html
+#btn-new {
+
+}
+
+

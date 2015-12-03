@@ -1,0 +1,15 @@
+{
+  "name": "chrome-bookmarklet-ide",
+  "description": "An IDE used for creating / managing bookmarklets",
+  "main": "Gruntfile.coffee",
+  "authors": [
+    "Daniel Davison <sircapsalot@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "foundation-sites": "~6.0.4"
+  }
+}
