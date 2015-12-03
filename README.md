@@ -1,4 +1,6 @@
-Bookmarklet IDE
+![logo](https://raw.githubusercontent.com/ddavison/chrome-bookmarklet-ide/master/images/ide-logo-512.png)
+
+Chrome Bookmarklet IDE
 ===
 
 > A built-in IDE in Google Chrome for creating JavaScript Bookmarklets  
