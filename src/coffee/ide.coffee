@@ -81,29 +81,6 @@ class Ide
       )
     )
 
-  prepare_editor: (props) ->
-    code_editor_element = document.getElementById('ide-code-editor')
-    CodeMirror((element) ->
-      code_editor_element.parentNode.replaceChild(element, code_editor_element)
-    ,
-      props
-    )
-
-  # this method minifies and prepends with javascript: if it isn't already there
-  to_bookmarklet: (code) ->
-    $.post('http://codebeautify.org/service/jsmin', {data: code}, (response) ->
-
-    )
-
-  # this method cleans the code from a bookmarklet.  Tasks would include
-  # removing the "javascript:" bit, and formatting.
-  from_bookmarklet: (code) ->
-    if code.trim().startsWith('javascript:')
-      code = code.split('javascript:')[1]
-
-    code
-
-
 
 
 
