@@ -15,23 +15,53 @@ $width: 200px;
   .ide-tool-container {
     text-align: center;
 
-    .button {
+    .btn-new {
       margin: 0;
+
+      &:hover {
+        .icon {
+          visibility: visible;
+          opacity: 1;
+          width: 1em;
+          margin-right: 0.2em;
+        }
+      }
+
+      .icon {
+        visibility: hidden;
+        opacity: 0;
+        width: 0;
+        margin-right: 0;
+        transition: visibility 150ms, opacity 150ms, width 150ms, margin 150ms;
+      }
     }
   }
 
   .ide-popup-content {
     .ide-bookmarklet {
       display: block;
+      position: relative;
       border-bottom: 1px solid;
       padding: 0.25em 0.5em;
 
       &:hover {
         background-color: #efefef;
+
+        .icon {
+          transform: translateY(-50%) translateX(-50%);
+        }
       }
 
       &:last-of-type {
         border: none;
+      }
+
+      .icon {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%) translateX(100%);
+        transition: transform 150ms;
       }
     }
   }
