@@ -14,17 +14,44 @@ module.exports = (grunt) ->
     thirdPartyOutput: "<%= assetDir %>/third-party"
     cssRequestPath: "/css"
     jsRequestPath: "/js"
-
-    compass:
-      dist:
+    watch:
+      options:
+        livereload: true
+      scss_popup:
+        files: ['src/scss/popup/*.scss']
+        tasks: ['sass:popup_dist', 'autoprefixer:popup_dist', 'notify:popup_dist']
+      scss_editor:
+        files: ['src/scss/editor/*.scss']
+        tasks: ['sass:editor_dist', 'autoprefixer:editor_dist', 'notify:editor_dist']
+    autoprefixer:
+      options:
+        map: true
+      popup_dist:
+        src: 'dist/assets/css/popup.css'
+      editor_dist:
+        src: 'dist/assets/css/editor.css'
+    sass:
+      options:
+        sourceMap: true,
+        outputStyle: 'compressed'
+      editor_dist:
+        files:
+          'dist/assets/css/editor.css': 'src/scss/editor.scss'
+      popup_dist:
+        files:
+          'dist/assets/css/popup.css': 'src/scss/popup.scss'
+    notify:
+      editor_dist:
         options:
-          sassDir: "<%= srcDirScss %>"
-          cssDir: "<%= cssOutput %>"
-          outputStyle: 'compact'
-
+          title: 'Chrome Bookmarket IDE',
+          message: 'Editor SASS Complete'
+      popup_dist:
+        options:
+          title: 'Chrome Bookmarket IDE',
+          message: 'Popup SASS Complete'
     coffee:
       production:
-        expand:true
+        expand: true
         cwd: "<%= srcDirCoffee %>"
         src: ["**/*.coffee"]
         dest: "<%= jsOutput %>"
@@ -42,22 +69,13 @@ module.exports = (grunt) ->
           expand: true
           ext: ".html"
         ]
-
-    watch:
-      coffee:
-        files: "<%= srcDirCoffee %>/**/*.coffee"
-        tasks: ["coffee:development"]
-      css:
-        files: "<%= srcDirScss %>/**/*.scss"
-        tasks: ["compass:dist"]
-
     copy:
       manifest:
         files: [{
-            expand: true,
-            src: ['manifest.json'],
-            dest: '<%= outputDir %>'
-          }
+          expand: true,
+          src: ['manifest.json'],
+          dest: '<%= outputDir %>'
+        }
         ]
       images:
         files: [{
@@ -84,7 +102,7 @@ module.exports = (grunt) ->
           banner: "/* TODO */"
 
 
-    # zip up everything for release
+# zip up everything for release
     compress:
       extension:
         options:
@@ -95,26 +113,32 @@ module.exports = (grunt) ->
         cwd: 'dist/'
 
     clean: ["<%= outputDir %>"]
-
   )
 
   grunt.loadNpmTasks('grunt-contrib-jade')
-  grunt.loadNpmTasks('grunt-contrib-compass')
+#  grunt.loadNpmTasks('grunt-cogntrib-compass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-shell')
   grunt.loadNpmTasks('grunt-contrib-compress')
+  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-sass')
+  grunt.loadNpmTasks('grunt-autoprefixer')
+  grunt.loadNpmTasks('grunt-notify')
+
+  grunt.registerTask('Watch', ['watch'])
 
   grunt.registerTask('default', [
-    'clean',             # clean the distribution directory
-    'jade:compile',       # compile the jade sources
+    'clean', # clean the distribution directory
+    'jade:compile', # compile the jade sources
     'coffee:production', # compile the coffeescript
-    'compass:dist',      # compile the sass
-    'copy:manifest',     # copy the chrome manifest
-    'copy:images',          # copy the png resize button
-    'copy:third_party',  # copy all third party sources that are needed
+    'sass:editor_dist', # compile the sass
+    'sass:popup_dist', # compile the sass
+    'copy:manifest', # copy the chrome manifest
+    'copy:images', # copy the png resize button
+    'copy:third_party', # copy all third party sources that are needed
   ])
 
   grunt.registerTask('release', ->
