@@ -8,6 +8,9 @@ Chrome Bookmarklet IDE
 What it does
 ===
 
+> Manage, run, edit your bookmarklets through this Chrome extension
+
+The IDE provides a build-in code editor powered by [CodeMirror](https://codemirror.net)
 
 Develop
 ===
