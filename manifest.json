@@ -25,7 +25,12 @@
 
   "offline_enabled": true,
 
-  "permissions": ["tabs", "bookmarks", "storage"],
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "storage",
+    "*://*/*"
+  ],
 
   "icons": {
     "512": "assets/images/ide-logo-512.png",
