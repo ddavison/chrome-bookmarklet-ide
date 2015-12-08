@@ -25,7 +25,7 @@ class Ide
 
   # get a parameter from the url
   get_param: (which) ->
-    result = 'Not found'
+    result = null
     tmp = []
 
     location.search

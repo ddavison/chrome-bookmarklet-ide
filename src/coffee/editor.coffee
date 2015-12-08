@@ -25,8 +25,8 @@ class Editor
           $(objects.$FILE_LOCATION).text(parent_folder[0].title)
         )
 
-        @beautify(bookmark.url, (beautified_code) =>
-          props.value = beautified_code
+        @beautify(bookmark.url, (resp) =>
+          props.value = resp
           @refresh(props)
         )
       )
@@ -34,17 +34,26 @@ class Editor
       @refresh(props)
 
   # Get / Set the code
-  code: (new_code) ->
-
+  code: (new_code = null) ->
+    code_editor = $('.CodeMirror')[0].CodeMirror
+    if new_code
+      code_editor.options.value = new_code
+      return new_code
+    else
+      code_editor.options.value
 
   # Beautify code (will be called called from the code in the bookmarklet)
   beautify: (code, callback) ->
-    callback.call(code) if callback
+    code = @code unless code
+    code = code.replace('javascript:', '')
+    callback(code)
+
 
   # Minify code (will be called when saving the bookmarklet)
   minify: (code, callback) ->
-    $.post('http://codebeautify.org/service/jsmin', {data: code}, (response) ->
-      callback.call(response)
+    code = @code unless code
+    $.get('http://marijnhaverbeke.nl/uglifyjs', {js_code: code}, (response) ->
+      callback(code)
     )
 
 $(document).ready ->
