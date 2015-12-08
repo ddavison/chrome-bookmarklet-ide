@@ -13,6 +13,7 @@ class Editor
       props
     )
 
+
   constructor: ->
     props = Ide.get_property('editor_props')
     bookmarklet_id = Ide.get_param('id')

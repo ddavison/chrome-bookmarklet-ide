@@ -38,7 +38,7 @@ module.exports = (grunt) ->
           match: /Extensions/
       extensions_page:
         options:
-          match: /chrome-extension:.*?(edit|new)\.html/
+          match: /IDE ::/
     sass:
       options:
         sourceMap: true,
