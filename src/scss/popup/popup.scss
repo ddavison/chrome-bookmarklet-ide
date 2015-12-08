@@ -1,29 +1,23 @@
-@import "../_base";
+@import "../base";
+@import "../settings";
 
-$width: 600px;
+$width: 200px;
 
 #ide-popup {
   width: $width;
   max-width: $width;
+  color: $primary-color;
 
   .ide-bookmarklet {
     display: block;
-    height: 40px;
-    padding: 10px;
     border-bottom: 1px solid;
+
+    &:last-of-type {
+      border: none;
+    }
   }
 
   .ide-bookmarklet:hover {
     background-color: #D7EFFF;
   }
-
-}
-
-#ide-popup-header {
-  height: 30px;
-}
-
-// Button on the popup that redirects to new.html
-#btn-new {
-
 }
