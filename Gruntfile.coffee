@@ -40,10 +40,10 @@ module.exports = (grunt) ->
         outputStyle: 'compressed'
       editor_dist:
         files:
-          'dist/assets/css/editor.css': 'src/scss/editor.scss'
+          'dist/assets/css/editor.css': 'src/scss/editor/editor.scss'
       popup_dist:
         files:
-          'dist/assets/css/popup.css': 'src/scss/popup.scss'
+          'dist/assets/css/popup.css': 'src/scss/popup/popup.scss'
     notify:
       editor_dist:
         options:
