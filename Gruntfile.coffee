@@ -17,23 +17,22 @@ module.exports = (grunt) ->
     watch:
       options:
         livereload: true
+      scss:
+        files: ['src/scss/*.scss']
+        tasks: ['sass', 'reload', 'notify:popup_dist']
       scss_popup:
         files: ['src/scss/popup/*.scss']
-        tasks: ['sass:popup_dist', 'autoprefixer:popup_dist', 'reload', 'notify:popup_dist']
+        tasks: ['sass:popup_dist', 'reload', 'notify:popup_dist']
       scss_editor:
         files: ['src/scss/editor/*.scss']
-        tasks: ['sass:editor_dist', 'autoprefixer:editor_dist', 'reload', 'notify:editor_dist']
+        tasks: ['sass:editor_dist', 'reload', 'notify:editor_dist']
+      jade:
+        files: ['src/*.jade']
+        tasks: ['jade', 'reload', 'notify:jade']
     reload:
       extensions_page:
         options:
           match: /Extensions/
-    autoprefixer:
-      options:
-        map: true
-      popup_dist:
-        src: 'dist/assets/css/popup.css'
-      editor_dist:
-        src: 'dist/assets/css/editor.css'
     sass:
       options:
         sourceMap: true,
@@ -53,6 +52,10 @@ module.exports = (grunt) ->
         options:
           title: 'Chrome Bookmarket IDE',
           message: 'Popup SASS Complete'
+      jade:
+        options:
+          title: 'Chrome Bookmarket IDE',
+          message: 'Jade Complete'
     coffee:
       production:
         expand: true
@@ -120,7 +123,7 @@ module.exports = (grunt) ->
   )
 
   grunt.loadNpmTasks('grunt-contrib-jade')
-#  grunt.loadNpmTasks('grunt-cogntrib-compass')
+  #  grunt.loadNpmTasks('grunt-cogntrib-compass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-copy')

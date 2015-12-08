@@ -12,12 +12,14 @@ $width: 200px;
     display: block;
     border-bottom: 1px solid;
 
+    &:hover {
+      background-color: #efefef;
+    }
+
     &:last-of-type {
       border: none;
     }
   }
 
-  .ide-bookmarklet:hover {
-    background-color: #D7EFFF;
-  }
+
 }
