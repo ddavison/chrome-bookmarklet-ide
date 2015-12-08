@@ -10,6 +10,7 @@
   "homepage": "",
   "private": true,
   "dependencies": {
-    "foundation-sites": "~6.0.4"
+    "foundation-sites": "~6.0.4",
+    "font-awesome": "~4.5.0"
   }
 }

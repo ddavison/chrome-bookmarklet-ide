@@ -3,12 +3,13 @@ html
   head
     include jade/_assets
     link(rel='stylesheet' href='assets/css/popup.css')
-    link(rel='style' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
   body#ide-popup
     header.ide-popup-header.row
       .columns.small-12
         .ide-tool-container
-          a.btn-new.button(href="new.html" target='_blank') New
+          a.btn-new.button(href="new.html" target='_blank')
+            span.fa.fa-plus
+            | New
 
     .ide-popup-content.row.collapse
       .columns.small-12(data-popup-content)

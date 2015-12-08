@@ -30,7 +30,7 @@ module.exports = (grunt) ->
         files: ['src/coffee/*.coffee']
         tasks: ['coffee', 'reload', 'notify:coffee']
       jade:
-        files: ['src/*.jade']
+        files: ['src/*.jade', 'src/jade/*.jade']
         tasks: ['jade', 'reload', 'notify:jade']
     reload:
       extensions_main_page:
