@@ -1,5 +1,9 @@
 @import "../_base";
 
+body {
+  background: red !important;
+}
+
 #ide-editor-header {
   height: 60px;
 
@@ -20,6 +24,7 @@
   }
 }
 
+
 #ide-editor-logo {
   width: 50px;
   height: 50px;
@@ -31,9 +36,6 @@
   height: 40px;
 }
 
-// Button on the popup that redirects to new.html
 #btn-new {
-
+  font-size: 5em;
 }
-
-

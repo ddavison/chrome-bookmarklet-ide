@@ -22,7 +22,11 @@ module.exports = (grunt) ->
         tasks: ['sass:popup_dist', 'autoprefixer:popup_dist', 'notify:popup_dist']
       scss_editor:
         files: ['src/scss/editor/*.scss']
-        tasks: ['sass:editor_dist', 'autoprefixer:editor_dist', 'notify:editor_dist']
+        tasks: ['sass:editor_dist', 'autoprefixer:editor_dist', 'reload', 'notify:editor_dist']
+    reload:
+      extensions_page:
+        options:
+          match: /Extensions/
     autoprefixer:
       options:
         map: true
@@ -127,6 +131,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-sass')
   grunt.loadNpmTasks('grunt-autoprefixer')
   grunt.loadNpmTasks('grunt-notify')
+  grunt.loadNpmTasks('grunt-reload-chrome')
 
   grunt.registerTask('Watch', ['watch'])
 

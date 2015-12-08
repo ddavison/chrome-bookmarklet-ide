@@ -31,6 +31,7 @@
     "grunt-autoprefixer": "~3.0",
     "grunt-notify": "~0.4",
     "grunt-sass": "~1.0",
+    "grunt-reload-chrome": "~0.1",
     "grunt-contrib-compress": "*",
     "grunt-shell": "*",
     "haml-coffee": "*"
