@@ -15,9 +15,17 @@ html
           input#ide-editor-file-name(type='text' value='Untitled')
 
       #ide-editor-options.float-right
-        a.button Test
         a.button Test 2
 
     .row
       block content
+
+      small.row
+        address
+          | the ide will automatically put the
+          strong javascript:
+          | piece in on save
+
+      a.button.float-right Beautify
+
     script(type='application/javascript' src='assets/js/editor.js')

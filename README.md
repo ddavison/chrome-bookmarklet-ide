@@ -5,6 +5,9 @@ Chrome Bookmarklet IDE
 
 > A built-in IDE in Google Chrome for creating JavaScript Bookmarklets  
 
+What it does
+===
+
 
 Develop
 ===

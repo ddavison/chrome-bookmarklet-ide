@@ -7,8 +7,7 @@
 
 class Ide
   props =
-    template: "(function() {\n  // todo\n})();"
-    bookmarks_folder_name: 'DeleteMe'
+    bookmarks_folder_name: 'Bookmarklets'
 
     # default editor properties
     editor_props:
@@ -23,6 +22,21 @@ class Ide
   constructor: ->
     @load_properties()
     @load_bookmarklets()
+
+  # get a parameter from the url
+  get_param: (which) ->
+    result = 'Not found'
+    tmp = []
+
+    location.search
+    .substr(1)
+    .split("&")
+    .forEach((item) ->
+      tmp = item.split('=')
+      result = decodeURIComponent(tmp[1]) if tmp[0] == which
+    )
+
+    result
 
   # Set a property to a specific value
   set_property: (prop, value) ->
@@ -40,7 +54,9 @@ class Ide
   load_properties: ->
     console.log 'loading properties'
 
-  load_bookmarklets: ->
+  # load all bookmarklets from the folder (create the folder if not there)
+  #  @get_property('bookmarklets') to fetch all
+  load_bookmarklets: (callback) ->
     bookmarks_folder = @get_property('bookmarks_folder_name')
     chrome.bookmarks.search(bookmarks_folder, (bookmarks) =>
       if bookmarks.length > 1
@@ -61,7 +77,35 @@ class Ide
         @get_property('bookmarklets_dir').id
       , (bookmarks) =>
         @set_property('bookmarklets', bookmarks[0].children)
+        callback.call() if callback
       )
     )
+
+  prepare_editor: (props) ->
+    code_editor_element = document.getElementById('ide-code-editor')
+    CodeMirror((element) ->
+      code_editor_element.parentNode.replaceChild(element, code_editor_element)
+    ,
+      props
+    )
+
+  # this method minifies and prepends with javascript: if it isn't already there
+  to_bookmarklet: (code) ->
+    $.post('http://codebeautify.org/service/jsmin', {data: code}, (response) ->
+
+    )
+
+  # this method cleans the code from a bookmarklet.  Tasks would include
+  # removing the "javascript:" bit, and formatting.
+  from_bookmarklet: (code) ->
+    if code.trim().startsWith('javascript:')
+      code = code.split('javascript:')[1]
+
+    code
+
+
+
+
+
 
 window.Ide = new Ide()

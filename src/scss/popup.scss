@@ -5,6 +5,18 @@ $width: 600px;
 #ide-popup {
   width: $width;
   max-width: $width;
+
+  .ide-bookmarklet {
+    display: block;
+    height: 40px;
+    padding: 10px;
+    border-bottom: 1px solid;
+  }
+
+  .ide-bookmarklet:hover {
+    background-color: #D7EFFF;
+  }
+
 }
 
 #ide-popup-header {
