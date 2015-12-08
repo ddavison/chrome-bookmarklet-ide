@@ -20,6 +20,7 @@ class Editor
       chrome.bookmarks.get(bookmarklet_id, (b) =>
         bookmark = b[0]
         $(objects.$FILE_NAME).val(bookmark.title)
+        document.title = "IDE :: #{bookmark.title}"
         chrome.bookmarks.get(bookmark.parentId, (parent_folder) ->
           $(objects.$FILE_LOCATION).text(parent_folder[0].title)
           $(objects.$FILE_LOCATION).data('folder-id', parent_folder[0].id)
