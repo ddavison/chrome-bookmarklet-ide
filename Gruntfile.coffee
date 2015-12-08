@@ -19,7 +19,7 @@ module.exports = (grunt) ->
         livereload: true
       scss_popup:
         files: ['src/scss/popup/*.scss']
-        tasks: ['sass:popup_dist', 'autoprefixer:popup_dist', 'notify:popup_dist']
+        tasks: ['sass:popup_dist', 'autoprefixer:popup_dist', 'reload', 'notify:popup_dist']
       scss_editor:
         files: ['src/scss/editor/*.scss']
         tasks: ['sass:editor_dist', 'autoprefixer:editor_dist', 'reload', 'notify:editor_dist']
