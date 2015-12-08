@@ -19,7 +19,9 @@ Develop
 - Configure
 
   > $ npm install -g bower
+  
   > $ npm install
+  
   > $ bower install
 
 - Compile all sources from `./src` into `./dist`.
