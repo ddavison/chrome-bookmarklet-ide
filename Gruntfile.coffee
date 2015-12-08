@@ -33,9 +33,12 @@ module.exports = (grunt) ->
         files: ['src/*.jade']
         tasks: ['jade', 'reload', 'notify:jade']
     reload:
-      extensions_page:
+      extensions_main_page:
         options:
           match: /Extensions/
+      extensions_page:
+        options:
+          match: /chrome-extension:.*?(edit|new)\.html/
     sass:
       options:
         sourceMap: true,
