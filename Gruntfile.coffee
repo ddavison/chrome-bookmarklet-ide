@@ -26,6 +26,9 @@ module.exports = (grunt) ->
       scss_editor:
         files: ['src/scss/editor/*.scss']
         tasks: ['sass:editor_dist', 'reload', 'notify:editor_dist']
+      coffee:
+        files: ['src/coffee/*.coffee']
+        tasks: ['coffee', 'reload', 'notify:coffee']
       jade:
         files: ['src/*.jade']
         tasks: ['jade', 'reload', 'notify:jade']
@@ -52,6 +55,10 @@ module.exports = (grunt) ->
         options:
           title: 'Chrome Bookmarket IDE',
           message: 'Popup SASS Complete'
+      coffee:
+        options:
+          title: 'Chrome Bookmarket IDE',
+          message: 'Coffee Complete'
       jade:
         options:
           title: 'Chrome Bookmarket IDE',
