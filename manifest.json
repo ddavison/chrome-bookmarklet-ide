@@ -17,6 +17,10 @@
     }
   },
 
+  "background": {
+    "scripts": ["assets/js/constant.js"]
+  },
+
   "options_ui": {
     "chrome_style": true,
     "page": "options.html"
@@ -28,7 +32,7 @@
     "tabs",
     "bookmarks",
     "storage",
-    "*://*/*"
+    "contextMenus"
   ],
 
   "icons": {
