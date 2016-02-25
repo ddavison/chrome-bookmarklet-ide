@@ -1,11 +1,28 @@
 doctype
 html
   head
+    include jade/_foundation
     title Hi there
+    link(rel='stylesheet' href='assets/css/editor.css')
 
 body
-  label Bookmarklets Project Directory
-  br
-  input#ide-options-projectdir(type='text')
+  label Project Directory
+    input#ide-options-txt-projectdir(type='text')
+
+  label Indent Size
+    input(type='number')#ide-options-txt-indentsize
+
+  label Use tabs instead of spaces
+    input(type='checkbox')#ide-options-chk-usetabs
+
+  label Show Line Numbers
+    input(type='checkbox')#ide-options-chk-showlinenumbers
+
+  #ide-options-status
+  a#ide-options-btn-save.button
+    span.icon.fa.fa-save
+    | Save
+
 
   script(type='application/javascript' src='assets/js/settings.js')
+  script(type='application/javascript' src='assets/js/options.js')

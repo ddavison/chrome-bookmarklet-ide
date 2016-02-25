@@ -9,25 +9,26 @@ class Editor
 
   # Will be called when the page is loaded
   constructor: ->
-    props = Ide.get_property('editor_props')
     bookmarklet_id = Ide.get_param('id')
-    if bookmarklet_id
-      chrome.bookmarks.get(bookmarklet_id, (b) =>
-        bookmark = b[0]
-        $(objects.$FILE_NAME).val(bookmark.title)
-        document.title = "IDE :: #{bookmark.title}"
-        #chrome.bookmarks.get(bookmark.parentId, (parent_folder) ->
-          #$(objects.$FILE_LOCATION).text(parent_folder[0].title)
-          #$(objects.$FILE_LOCATION).data('folder-id', parent_folder[0].id)
-        #)
+    Ide.get_properties((props) =>
+      if bookmarklet_id
+        chrome.bookmarks.get(bookmarklet_id, (b) =>
+          bookmark = b[0]
+          $(objects.$FILE_NAME).val(bookmark.title)
+          document.title = "IDE :: #{bookmark.title}"
+          #chrome.bookmarks.get(bookmark.parentId, (parent_folder) ->
+            #$(objects.$FILE_LOCATION).text(parent_folder[0].title)
+            #$(objects.$FILE_LOCATION).data('folder-id', parent_folder[0].id)
+          #)
 
-        props.value = bookmark.url.replace('javascript:', '')
+          props.value = bookmark.url.replace('javascript:', '')
+          @refresh(props)
+          @selectAll()
+          @beautify()
+        )
+      else
         @refresh(props)
-        @selectAll()
-        @beautify()
-      )
-    else
-      @refresh(props)
+    )
 
   # Fetches the actual CodeMirror object
   getEditor: ->

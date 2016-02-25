@@ -1,7 +1,9 @@
 doctype
 html
   head
+    script(type='application/javascript' src='assets/js/settings.js')
     include _assets
+    include _foundation
     block title
     link(rel='stylesheet' href='assets/css/editor.css')
     script(type='application/javascript' src='assets/third-party/codemirror/mode/javascript/javascript.js')
@@ -36,4 +38,3 @@ html
     //a.button.float-right Beautify
 
     script(type='application/javascript' src='assets/js/editor.js')
-    script(type='application/javascript' src='assets/js/settings.js')
