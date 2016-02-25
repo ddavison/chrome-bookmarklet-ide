@@ -79,12 +79,24 @@ class Editor
   save: ->
     name = $(objects.$FILE_NAME).val()
     @minify(@code(), (minified_code) ->
-      chrome.bookmarks.update(Ide.get_param('id'), {
-        title: name
-        url: minified_code
-      }, ->
-        alert('saved')
-      )
+      id = Ide.get_param('id')
+
+      if id
+        chrome.bookmarks.update(id, {
+          title: name
+          url: minified_code
+        }, ->
+          alert('saved')
+        )
+      else
+        chrome.bookmarks.create({
+          title: name,
+          url: minified_code,
+          parentId: Ide.get_property('bookmarklets_dir').id
+        }, (bookmarklet) ->
+          alert('saved')
+          location.href += "?id=#{bookmarklet.id}"
+        )
     )
 
   # Run the current bookmarklet
