@@ -12,6 +12,18 @@ What it does
 
 The IDE provides a build-in code editor powered by [CodeMirror](https://codemirror.net)
 
+Features
+========
+
+## See all bookmarklets in your project directory
+![bookmarklets](http://i.imgur.com/wedzJE2.png)
+
+## Edit existing bookmarklets
+![editing](http://i.imgur.com/5wMkr2D.png)
+
+## Add bookmarklets from the web
+![add from link](http://i.imgur.com/S9kHuDi.png)
+
 Develop
 ===
 
