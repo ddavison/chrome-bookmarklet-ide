@@ -12,18 +12,20 @@ window.Settings.get({
   smartIndent: true,
   tabSize: 2,
   indentWithTabs: false,
-  lineNumbers: true
+  lineNumbers: true,
+  theme: 'solarized'
 }, (items) ->
   document.querySelector('#ide-options-txt-projectdir').value = items.project_dir
+  document.querySelector('#ide-options-theme').value = items.theme
   document.querySelector('#ide-options-txt-indentsize').value = items.tabSize
   document.querySelector('#ide-options-chk-usetabs').checked = 'checked' if items.indentWithTabs
   document.querySelector('#ide-options-chk-showlinenumbers').checked = 'checked' if items.lineNumbers
 )
 
-
 # Save
 document.querySelector('#ide-options-btn-save').addEventListener('click', ->
   project_dir = document.querySelector('#ide-options-txt-projectdir').value
+  theme = document.querySelector('#ide-options-theme').value
   indentUnit = document.querySelector('#ide-options-txt-indentsize').value
   tabSize = document.querySelector('#ide-options-txt-indentsize').value
   indentWithTabs = document.querySelector('#ide-options-chk-usetabs').checked
@@ -35,6 +37,7 @@ document.querySelector('#ide-options-btn-save').addEventListener('click', ->
     tabSize: tabSize,
     indentWithTabs: indentWithTabs,
     lineNumbers: lineNumbers
+    theme: theme
   }, ->
     document.getElementById('ide-options-status').innerHTML = 'Saved.'
   )

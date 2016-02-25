@@ -45,6 +45,7 @@ class Ide
       tabSize: 2,
       indentWithTabs: false,
       lineNumbers: true
+      theme: 'solarized'
     }, (items) =>
       @set_property(k, v) for k, v of items
       callback(props)

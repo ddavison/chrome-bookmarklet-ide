@@ -3,24 +3,79 @@ html
   head
     include jade/_foundation
     title Hi there
-    link(rel='stylesheet' href='assets/css/editor.css')
+    link(rel='stylesheet' href='assets/css/options.css')
 
 body
   label Project Directory
     input#ide-options-txt-projectdir(type='text')
-
+  br
+  
   label Indent Size
     input(type='number')#ide-options-txt-indentsize
+  br
 
-  label Use tabs instead of spaces
-    input(type='checkbox')#ide-options-chk-usetabs
+  label Theme
+    select#ide-options-theme
+      option 3024-day
+      option 3024-night
+      option abcdef
+      option ambiance
+      option ambiance-mobile
+      option base16-dark
+      option base16-light
+      option bespin
+      option blackboard
+      option cobalt
+      option colorforth
+      option dracula
+      option eclipse
+      option elegant
+      option erlang-dark
+      option hopscotch
+      option icecoder
+      option isotope
+      option lesser-dark
+      option liquibyte
+      option material
+      option mbo
+      option mdn-like
+      option midnight
+      option monokai
+      option neat
+      option neo
+      option night
+      option paraiso-dark
+      option paraiso-light
+      option pastel-on-dark
+      option railscasts
+      option rubyblue
+      option seti
+      option solarized
+      option the-matrix
+      option tomorrow-night-bright
+      option tomorrow-night-eighties
+      option ttcn
+      option twilight
+      option vibrant-ink
+      option xq-dark
+      option xq-light
+      option yeti
+      option zenburn
+  br
 
-  label Show Line Numbers
-    input(type='checkbox')#ide-options-chk-showlinenumbers
+  input(type='checkbox')#ide-options-chk-usetabs
+  label(for='ide-options-chk-usetabs') Use tabs instead of spaces
+  br
 
+  input(type='checkbox')#ide-options-chk-showlinenumbers
+  label(for='ide-options-chk-showlinenumbers') Show Line Numbers
+
+  br
+  br
+  
   #ide-options-status
-  a#ide-options-btn-save.button
-    span.icon.fa.fa-save
+  a.float-right#ide-options-btn-save.button
+    spanicon.fa.fa-save
     | Save
 
 

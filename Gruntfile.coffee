@@ -26,6 +26,9 @@ module.exports = (grunt) ->
       scss_editor:
         files: ['src/scss/editor/*.scss']
         tasks: ['sass:editor_dist', 'reload', 'notify:editor_dist']
+      scss_options:
+        files: ['src/scss/options.scss']
+        tasks: ['sass:options_dist', 'reload', 'notify:options_dist']
       coffee:
         files: ['src/coffee/*.coffee']
         tasks: ['coffee', 'reload', 'notify:coffee']
@@ -49,6 +52,9 @@ module.exports = (grunt) ->
       popup_dist:
         files:
           'dist/assets/css/popup.css': 'src/scss/popup/popup.scss'
+      options_dist:
+        files:
+          'dist/assets/css/options.css': 'src/scss/options.scss'
     notify:
       editor_dist:
         options:
@@ -58,6 +64,10 @@ module.exports = (grunt) ->
         options:
           title: 'Chrome Bookmarket IDE',
           message: 'Popup SASS Complete'
+      options_dist:
+        options:
+          title: 'Chrome Bookmarket IDE',
+          message: 'Options SASS Complete'
       coffee:
         options:
           title: 'Chrome Bookmarket IDE',
@@ -155,6 +165,7 @@ module.exports = (grunt) ->
     'coffee:production', # compile the coffeescript
     'sass:editor_dist', # compile the sass
     'sass:popup_dist', # compile the sass
+    'sass:options_dist'
     'copy:manifest', # copy the chrome manifest
     'copy:images', # copy the png resize button
     'copy:third_party', # copy all third party sources that are needed

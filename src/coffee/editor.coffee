@@ -6,6 +6,7 @@ class Editor
     $BTN_SAVE: '#ide-editor-btn-save'
     $BTN_FORMAT: '#ide-editor-btn-formatfile'
     $BTN_RUN: '#ide-editor-btn-run'
+    $BTN_EDITOROPTIONS: '#ide-editor-lnk-editoroptions'
 
   # Will be called when the page is loaded
   constructor: ->
@@ -129,4 +130,17 @@ $(document).ready ->
   # Run the bookmarklet
   $(window.Editor.objects().$BTN_RUN)[0].addEventListener('click', ->
     window.Editor.run()
+  )
+
+  Ide.get_properties((props) ->
+    if props.theme
+      theme = document.createElement('link')
+      theme.setAttribute('rel', 'stylesheet')
+      theme.setAttribute('href', "assets/third-party/codemirror/theme/#{props.theme}.css")
+
+      document.head.appendChild(theme)
+  )
+
+  $(window.Editor.objects().$BTN_EDITOROPTIONS)[0].addEventListener('click', ->
+    chrome.runtime.openOptionsPage()
   )

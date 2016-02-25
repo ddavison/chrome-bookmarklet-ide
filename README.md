@@ -24,6 +24,9 @@ Features
 ## Add bookmarklets from the web
 ![add from link](http://i.imgur.com/S9kHuDi.png)
 
+## Themeable
+![select from themes](http://i.imgur.com/awrCtkF.png)
+
 Develop
 ===
 
