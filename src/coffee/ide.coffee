@@ -19,6 +19,12 @@ class Ide
       indentWithTabs: false
       lineNumbers: true
 
+      # un-overridable
+      onKeyEvent: (e, v) -> alert("changed")
+      extraKeys:
+        "Ctrl-S": -> window.Editor.save()
+        "Cmd-S": -> window.Editor.save()
+
   constructor: ->
     @load_properties()
     @load_bookmarklets()
@@ -50,6 +56,9 @@ class Ide
   # Save all properties into storage
   save_properties: ->
 
+  changed: ->
+    alert("changed")
+
   # Load all properties from storage
   load_properties: ->
     console.log 'loading properties'
@@ -80,9 +89,5 @@ class Ide
         callback.call() if callback
       )
     )
-
-
-
-
 
 window.Ide = new Ide()

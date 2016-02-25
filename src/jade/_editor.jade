@@ -5,27 +5,35 @@ html
     block title
     link(rel='stylesheet' href='assets/css/editor.css')
     script(type='application/javascript' src='assets/third-party/codemirror/mode/javascript/javascript.js')
+    script(type='application/javascript' src='assets/js/formatter.js')
   body#ide-editor
     header#ide-editor-header.row
+      //a#ide-editor-btn-close.float-right
+      //  span.icon.fa.fa-close
       img(src='assets/images/ide-logo-512.png')#ide-editor-logo.float-left
       #ide-editor-file-container.row
-        div#ide-editor-file-location.small-2.large-2.columns Select
-        div#ide-editor-file-separator.small-4.large-1.columns /
+        //div#ide-editor-file-location.small-2.large-2.columns Select
+        //div#ide-editor-file-separator.small-4.large-1.columns /
         span.small-6.large-8.columns
           input#ide-editor-file-name(type='text' value='Untitled')
 
-      #ide-editor-options.float-right
-        a#ide-editor-btn-save.button Save
+    aside#ide-editor-options.float-right.row.large-2
+      a#ide-editor-btn-save.button
+        span.icon.fa.fa-save
+        | Save
+      br/
+      a#ide-editor-btn-formatfile.button
+        span.icon.fa.fa-paint-brush
+        | Format File
+      br/
+      a#ide-editor-btn-run.button
+        span.icon.fa.fa-play
+        | Run
 
-    .row
+    section.row.small-10
       block content
 
-      small.row
-        address
-          | the ide will automatically put the
-          strong javascript:
-          | piece in on save
-
-      a.button.float-right Beautify
+    //a.button.float-right Beautify
 
     script(type='application/javascript' src='assets/js/editor.js')
+    script(type='application/javascript' src='assets/js/settings.js')
