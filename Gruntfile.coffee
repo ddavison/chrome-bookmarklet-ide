@@ -129,11 +129,13 @@ module.exports = (grunt) ->
         src: ['**/*']
         cwd: 'dist/'
 
-    clean: ["<%= outputDir %>"]
+    clean:
+      options:
+        force: true
+      build: ['<%= outputDir %>']
   )
 
   grunt.loadNpmTasks('grunt-contrib-jade')
-  #  grunt.loadNpmTasks('grunt-cogntrib-compass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-copy')
@@ -142,14 +144,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-compress')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-sass')
-  grunt.loadNpmTasks('grunt-autoprefixer')
   grunt.loadNpmTasks('grunt-notify')
   grunt.loadNpmTasks('grunt-reload-chrome')
 
   grunt.registerTask('Watch', ['watch'])
 
   grunt.registerTask('default', [
-    'clean', # clean the distribution directory
+    'clean:build', # clean the distribution directory
     'jade:compile', # compile the jade sources
     'coffee:production', # compile the coffeescript
     'sass:editor_dist', # compile the sass

@@ -1,6 +1,6 @@
 {
   "name": "chrome-bookmarklet-ide",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "An IDE used for creating / managing bookmarklets",
   "main": "Gruntfile.coffee",
   "scripts": {
@@ -27,10 +27,10 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "~0.6",
-    "grunt-notify": "~0.4",
-    "grunt-sass": "~1.0",
-    "grunt-reload-chrome": "~0.1",
+    "grunt-contrib-watch": "*",
+    "grunt-notify": "*",
+    "grunt-sass": "*",
+    "grunt-reload-chrome": "*",
     "grunt-contrib-compress": "*",
     "grunt-shell": "*",
     "haml-coffee": "*"
