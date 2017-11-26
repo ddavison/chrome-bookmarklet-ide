@@ -39,7 +39,7 @@ class Ide
   get_properties: (callback) ->
     window.Settings.get({
       project_dir: 'Bookmarklets',
-      value: '(function() {\n  // todo\n})();',
+      value: '(function() {\n  /* todo */\n})();',
       indentUnit: 2,
       smartIndent: true,
       tabSize: 2,
@@ -60,6 +60,8 @@ class Ide
     @get_properties((props) =>
       bookmarks_folder = props.project_dir
       chrome.bookmarks.search(bookmarks_folder, (bookmarks) =>
+        bookmarks = bookmarks.filter (b) -> b.url == undefined
+
         if bookmarks.length > 1
           alert "Apparently there are more than one bookmark folders named #{bookmarks_folder}.\n\n" +
             'In order for the Bookmarklet IDE to work, it needs to know where to store the bookmarklets.\n' +
@@ -68,9 +70,12 @@ class Ide
         else if bookmarks.length == 0
           chrome.bookmarks.create(
             title: bookmarks_folder
-          , (b) ->
+          , (b) =>
             bookmarks = b
+            @load_bookmarklets(callback)
           )
+
+          return
 
         @set_property('bookmarklets_dir', bookmarks[0])
 
