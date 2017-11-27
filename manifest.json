@@ -4,7 +4,7 @@
   "description": "An IDE used for creating / managing bookmarklets",
   "author": "ddavison",
   "homepage_url": "https://github.com/ddavison/chrome-bookmarklet-ide",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 2,
   "browser_action": {
     "default_title": "Bookmarklet IDE",
