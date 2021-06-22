@@ -8,10 +8,6 @@ $width: 200px;
   max-width: $width;
   color: $primary-color;
 
-  .ide-popup-header {
-    margin-bottom: 1em;
-  }
-
   .ide-tool-container {
     text-align: center;
 
@@ -41,7 +37,6 @@ $width: 200px;
     .ide-bookmarklet {
       display: block;
       position: relative;
-      border-bottom: 1px solid;
       padding: 0.25em 0.5em;
 
       &:hover {
@@ -52,8 +47,8 @@ $width: 200px;
         }
       }
 
-      &:last-of-type {
-        border: none;
+      &:first-of-type {
+        border-top: 1px solid;
       }
 
       .icon {

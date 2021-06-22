@@ -114,12 +114,48 @@ module.exports = (grunt) ->
           src: ['*']
           dest: '<%= imagesOutput %>/'
         }]
-      third_party:
+      foundation:
         files: [
           expand: true
-          cwd: '<%= srcDirThirdParty %>/'
+          cwd: '<%= srcDirThirdParty %>/foundation-sites/dist'
+          src: ['**/*.min*']
+          dest: '<%= thirdPartyOutput %>/foundation'
+        ]
+      font_awesome:
+        files: [
+          expand: true
+          cwd: '<%= srcDirThirdParty %>/font-awesome/css'
+          src: ['**/*.min*']
+          dest: '<%= thirdPartyOutput %>/font-awesome'
+        ,
+          expand: true
+          cwd: '<%= srcDirThirdParty %>/font-awesome/fonts'
           src: ['**/*']
-          dest: '<%= thirdPartyOutput %>/'
+          dest: '<%= thirdPartyOutput %>/fonts'
+        ]
+      jquery:
+        files: [
+          expand: true
+          cwd: '<%= srcDirThirdParty %>/jquery/dist'
+          src: ['**/*.min*']
+          dest: '<%= thirdPartyOutput %>/jquery'
+        ]
+      codemirror:
+        files: [
+          expand: true,
+          cwd: '<%= srcDirThirdParty %>/codemirror/lib',
+          src: ['**/*'],
+          dest: '<%= thirdPartyOutput %>/codemirror'
+        ,
+          expand: true,
+          cwd: '<%= srcDirThirdParty %>/codemirror/mode/javascript',
+          src: ['javascript.js'],
+          dest: '<%= thirdPartyOutput %>/codemirror/mode'
+        ,
+          expand: true,
+          cwd: '<%= srcDirThirdParty %>/codemirror/theme',
+          src: ['*.css'],
+          dest: '<%= thirdPartyOutput %>/codemirror/theme'
         ]
 
     uglify:
@@ -170,7 +206,10 @@ module.exports = (grunt) ->
     'sass:options_dist'
     'copy:manifest', # copy the chrome manifest
     'copy:images', # copy the png resize button
-    'copy:third_party', # copy all third party sources that are needed
+    'copy:foundation', # copy foundation dependencies
+    'copy:font_awesome', # copy font-awesome dependencies
+    'copy:jquery', # copy jquery dependencies
+    'copy:codemirror', # copy codemirror dependencies
   ])
 
   grunt.registerTask('release', ->

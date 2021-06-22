@@ -107,7 +107,7 @@ class Editor
     )
 
   changed: ->
-    alert("something changed")
+    alert('something changed')
 
   objects: ->
     objects

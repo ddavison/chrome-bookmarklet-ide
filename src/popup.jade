@@ -6,12 +6,17 @@ html
     include jade/_foundation
     link(rel='stylesheet' href='assets/css/popup.css')
   body#ide-popup
-    header.ide-popup-header.row
-      .columns.small-12
-        .ide-tool-container
-          a.btn-new.button(href="new.html" target='_blank')
-            span.icon.fa.fa-plus
-            |New
+    header.ide-popup-header
+      .column
+        .row
+          .column.small-4
+            img(src='assets/images/ide-logo-128.png' alt='IDE' title='Bookmarklet IDE')
+          .column.small-8
+            a.btn-new.button.small.float-right(href='new.html' target='_blank')
+              span.icon.fa.fa-plus
+              | New
+        .row
+          .ide-tool-container
 
     .ide-popup-content.row.collapse
       .columns.small-12(data-popup-content)
