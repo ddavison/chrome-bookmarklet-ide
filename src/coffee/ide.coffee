@@ -62,12 +62,7 @@ class Ide
       chrome.bookmarks.search(bookmarks_folder, (bookmarks) =>
         bookmarks = bookmarks.filter (b) -> b.url == undefined
 
-        if bookmarks.length > 1
-          alert "Apparently there are more than one bookmark folders named #{bookmarks_folder}.\n\n" +
-            'In order for the Bookmarklet IDE to work, it needs to know where to store the bookmarklets.\n' +
-            'Please rectify this solution either by correcting your bookmarks for disambiguity, or by opening' +
-            ' this extensions options page and changing the folder name.'
-        else if bookmarks.length == 0
+        if bookmarks.length == 0
           chrome.bookmarks.create(
             title: bookmarks_folder
           , (b) =>
@@ -75,7 +70,12 @@ class Ide
             @load_bookmarklets(callback)
           )
 
-          return
+        if bookmarks.length > 1
+          alert "Apparently there are more than one bookmark folders named #{bookmarks_folder}.\n\n" +
+            'In order for the Bookmarklet IDE to work, it needs to know where to store the bookmarklets.\n' +
+            'Please rectify this solution either by correcting your bookmarks for disambiguity, or by opening' +
+            ' this extensions options page and changing the folder name.'
+          @set_property('bookmarklets_dir', null)
 
         @set_property('bookmarklets_dir', bookmarks[0])
 

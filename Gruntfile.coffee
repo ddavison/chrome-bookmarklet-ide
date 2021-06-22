@@ -1,3 +1,5 @@
+sass = require 'node-sass'
+
 module.exports = (grunt) ->
   grunt.initConfig(
     pkg: grunt.file.readJSON("package.json")
@@ -44,6 +46,7 @@ module.exports = (grunt) ->
           match: /IDE ::/
     sass:
       options:
+        implementation: sass,
         sourceMap: true,
         outputStyle: 'compressed'
       editor_dist:
@@ -155,7 +158,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-sass')
   grunt.loadNpmTasks('grunt-notify')
-  grunt.loadNpmTasks('grunt-reload-chrome')
 
   grunt.registerTask('Watch', ['watch'])
 

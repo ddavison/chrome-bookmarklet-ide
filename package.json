@@ -10,29 +10,27 @@
     "type": "git",
     "url": "https://github.com/ddavison/chrome-bookmarklet-ide.git"
   },
-  "author": [
-    "Daniel Davison <sircapsalot@gmail.com>"
-  ],
+  "author": "Daniel Davison <sircapsalot+bookmarklet-ide@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ddavison/chrome-bookmarklet-ide/issues"
   },
   "homepage": "https://github.com/ddavison/chrome-bookmarklet-ide",
   "devDependencies": {
-    "grunt": "*",
-    "grunt-cli": "*",
-    "grunt-contrib-jade": "*",
-    "grunt-contrib-compass": "*",
-    "grunt-contrib-coffee": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-notify": "*",
-    "grunt-sass": "*",
-    "grunt-reload-chrome": "*",
-    "grunt-contrib-compress": "*",
-    "grunt-shell": "*",
-    "haml-coffee": "*"
+    "grunt": "1.4.1",
+    "grunt-cli": "1.4.3",
+    "grunt-contrib-clean": "2.0.0",
+    "grunt-contrib-coffee": "2.1.0",
+    "grunt-contrib-compass": "1.1.1",
+    "grunt-contrib-compress": "2.0.0",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-jade": "1.0.0",
+    "grunt-contrib-uglify": "5.0.1",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-notify": "0.4.5",
+    "grunt-sass": "3.1.0",
+    "grunt-shell": "3.0.1",
+    "haml-coffee": "1.14.1",
+    "node-sass": "6.0.0"
   }
 }
