@@ -1,6 +1,6 @@
 {
   "name": "chrome-bookmarklet-ide",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "An IDE used for creating / managing bookmarklets",
   "main": "Gruntfile.coffee",
   "scripts": {
