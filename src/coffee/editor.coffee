@@ -10,67 +10,59 @@ class Editor
 
   # Will be called when the page is loaded
   constructor: ->
+    window.MonacoEnvironment = {
+      baseUrl: "/assets/third-party/monaco-editor"
+    }
+    require.config({ paths: { 'vs': 'assets/third-party/vs' }});
+    require(["vs/editor/editor.main"], ->
+
+      Ide.get_properties((settings) ->
+        window.Monaco = monaco.editor.create(document.getElementById(objects.CODE), {
+          value: [
+            "(() {",
+            '\tconsole.log("Hello, world!");',
+            "})();"
+          ].join('\n'),
+
+          language: "javascript",
+          automaticLayout: true,
+          theme: settings.theme,
+          lineNumbers: settings.lineNumbers,
+          fontSize: settings.fontSize
+        })
+      )
+    )
+
     bookmarklet_id = Ide.get_param('id')
+
+    return unless bookmarklet_id
+
     Ide.get_properties((props) =>
-      if bookmarklet_id
-        chrome.bookmarks.get(bookmarklet_id, (b) =>
-          bookmark = b[0]
-          $(objects.$FILE_NAME).val(bookmark.title)
-          document.title = "IDE :: #{bookmark.title}"
-          #chrome.bookmarks.get(bookmark.parentId, (parent_folder) ->
-            #$(objects.$FILE_LOCATION).text(parent_folder[0].title)
-            #$(objects.$FILE_LOCATION).data('folder-id', parent_folder[0].id)
-          #)
+      chrome.bookmarks.get(bookmarklet_id, (b) =>
+        bookmark = b[0]
+        $(objects.$FILE_NAME).val(bookmark.title)
+        document.title = "IDE :: #{bookmark.title}"
 
-          props.value = bookmark.url.replace('javascript:', '')
-          @refresh(props)
-          @selectAll()
-          @beautify()
-        )
-      else
-        @refresh(props)
+        props.value = bookmark.url.replace('javascript:', '')
+        @beautify()
+      )
     )
 
-  # Fetches the actual CodeMirror object
-  getEditor: ->
-    $('.CodeMirror')[0].CodeMirror
-
-  # Method that is called when the code mirror should be redrawn
-  refresh: (props) ->
-    code_editor_element = document.getElementById(objects.CODE)
-    CodeMirror((element) ->
-      code_editor_element.parentNode.replaceChild(element, code_editor_element)
-    ,
-      props
-    )
-
-# Get / Set the code in the editor
+  # Get / Set the code in the editor
   code: (new_code = null) ->
     if new_code
-      @getEditor().setValue(new_code)
+      Monaco.setValue(new_code)
       return new_code
     else
-      @getEditor().getValue()
+      Monaco.getValue()
 
-  # Utility method to fetch the range of characters that is currently selected
-  getSelectedRange: ->
-    {
-      from: @getEditor().getCursor(true),
-      to: @getEditor().getCursor(false)
-    }
-
-  # Select all the text within the code editor
-  selectAll: ->
-    @getEditor().execCommand('selectAll')
-
-  # Beautify code (will be called called from the code in the bookmarklet)
+  # Beautify the code (will be called when loading the bookmarklet
   beautify: ->
-    range = @getSelectedRange()
-    @getEditor().autoFormatRange(range.from, range.to);
+    Monaco.getAction('editor.action.formatDocument').run()
 
   # Minify code (will be called when saving the bookmarklet)
   minify: (code, callback) ->
-    code = @code unless code
+    code = code || @code
     if code.startsWith("javascript:")
       callback(code)
     else
@@ -103,7 +95,7 @@ class Editor
   # Run the current bookmarklet
   run: ->
     @minify(@code(), (bookmarklet_script) ->
-      window.open(bookmarklet_script, "Bookmarklet: #{}")
+      chrome.tabs.create({ url: bookmarklet_script })
     )
 
   changed: ->
@@ -123,22 +115,12 @@ $(document).ready ->
 
   # Format the bookmarklet
   $(window.Editor.objects().$BTN_FORMAT)[0].addEventListener('click', ->
-    window.Editor.selectAll()
     window.Editor.beautify()
   )
 
   # Run the bookmarklet
   $(window.Editor.objects().$BTN_RUN)[0].addEventListener('click', ->
     window.Editor.run()
-  )
-
-  Ide.get_properties((props) ->
-    if props.theme
-      theme = document.createElement('link')
-      theme.setAttribute('rel', 'stylesheet')
-      theme.setAttribute('href', "assets/third-party/codemirror/theme/#{props.theme}.css")
-
-      document.head.appendChild(theme)
   )
 
   $(window.Editor.objects().$BTN_EDITOROPTIONS)[0].addEventListener('click', ->

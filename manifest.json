@@ -41,5 +41,7 @@
     "48": "assets/images/ide-logo-32.png",
     "24": "assets/images/ide-logo-24.png",
     "16": "assets/images/ide-logo-16.png"
-  }
+  },
+
+  "content_security_policy": "script-src 'self' blob: filesystem:"
 }

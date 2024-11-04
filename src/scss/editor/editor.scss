@@ -1,6 +1,19 @@
 @import "../_base";
 @import "../settings";
 
+html {
+  height: 100%;
+}
+
+body {
+
+}
+
+#ide-editor-code {
+  height: 100%;
+  overflow: hidden;
+}
+
 #ide-editor-header {
   height: 60px;
 
