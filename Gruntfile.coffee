@@ -8,6 +8,7 @@ module.exports = (grunt) ->
     srcDirCoffee: "<%= srcDir %>/coffee"
     srcDirImages: "./images"
     srcDirThirdParty: "./bower_components"
+    srcDirThirdPartyNpm: "./node_modules"
     outputDir: "./dist"
     assetDir: "<%= outputDir %>/assets"
     cssOutput: "<%= assetDir %>/css"
@@ -137,25 +138,35 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: '<%= srcDirThirdParty %>/jquery/dist'
-          src: ['**/*.min*']
+          src: ['jquery.min.js']
           dest: '<%= thirdPartyOutput %>/jquery'
         ]
-      codemirror:
+      monaco_editor:
         files: [
           expand: true,
-          cwd: '<%= srcDirThirdParty %>/codemirror/lib',
+          cwd: '<%= srcDirThirdPartyNpm %>/monaco-editor/min/vs/base',
           src: ['**/*'],
-          dest: '<%= thirdPartyOutput %>/codemirror'
+          dest: '<%= thirdPartyOutput %>/vs/base'
         ,
           expand: true,
-          cwd: '<%= srcDirThirdParty %>/codemirror/mode/javascript',
+          cwd: '<%= srcDirThirdPartyNpm %>/monaco-editor/min/vs',
+          src: ['loader.js'],
+          dest: '<%= thirdPartyOutput %>/vs'
+        ,
+          expand: true,
+          cwd: '<%= srcDirThirdPartyNpm %>/monaco-editor/min/vs/basic-languages/javascript',
           src: ['javascript.js'],
-          dest: '<%= thirdPartyOutput %>/codemirror/mode'
+          dest: '<%= thirdPartyOutput %>/vs/basic-languages/javascript'
         ,
           expand: true,
-          cwd: '<%= srcDirThirdParty %>/codemirror/theme',
-          src: ['*.css'],
-          dest: '<%= thirdPartyOutput %>/codemirror/theme'
+          cwd: '<%= srcDirThirdPartyNpm %>/monaco-editor/min/vs/language',
+          src: ['**/*'],
+          dest: '<%= thirdPartyOutput %>/vs/language'
+        ,
+          expand: true,
+          cwd: '<%= srcDirThirdPartyNpm %>/monaco-editor/min/vs/editor',
+          src: ['**/*'],
+          dest: '<%= thirdPartyOutput %>/vs/editor'
         ]
 
     uglify:
@@ -168,7 +179,7 @@ module.exports = (grunt) ->
           banner: "/* TODO */"
 
 
-# zip up everything for release
+    # zip up everything for release
     compress:
       extension:
         options:
@@ -209,7 +220,7 @@ module.exports = (grunt) ->
     'copy:foundation', # copy foundation dependencies
     'copy:font_awesome', # copy font-awesome dependencies
     'copy:jquery', # copy jquery dependencies
-    'copy:codemirror', # copy codemirror dependencies
+    'copy:monaco_editor', # copy monaco dependencies
   ])
 
   grunt.registerTask('release', ->

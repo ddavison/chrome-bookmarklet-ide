@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/ddavison/chrome-bookmarklet-ide",
   "devDependencies": {
-    "grunt": "1.4.1",
+    "grunt": "^1.5.3",
     "grunt-cli": "1.4.3",
     "grunt-contrib-clean": "2.0.0",
     "grunt-contrib-coffee": "2.1.0",
@@ -31,6 +31,7 @@
     "grunt-sass": "3.1.0",
     "grunt-shell": "3.0.1",
     "haml-coffee": "1.14.1",
+    "monaco-editor": "0.34.0",
     "node-sass": "6.0.0"
   }
 }

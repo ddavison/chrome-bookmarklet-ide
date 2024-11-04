@@ -39,13 +39,10 @@ class Ide
   get_properties: (callback) ->
     window.Settings.get({
       project_dir: 'Bookmarklets',
-      value: '(function() {\n  /* todo */\n})();',
-      indentUnit: 2,
-      smartIndent: true,
-      tabSize: 2,
-      indentWithTabs: false,
-      lineNumbers: true
-      theme: 'solarized'
+      autoIndent: true,
+      lineNumbers: true,
+      fontSize: 12,
+      theme: 'vs'
     }, (items) =>
       @set_property(k, v) for k, v of items
       callback(props)
@@ -71,9 +68,9 @@ class Ide
           )
 
         if bookmarks.length > 1
-          alert "Apparently there are more than one bookmark folders named #{bookmarks_folder}.\n\n" +
-            'In order for the Bookmarklet IDE to work, it needs to know where to store the bookmarklets.\n' +
-            'Please rectify this solution either by correcting your bookmarks for disambiguity, or by opening' +
+          alert "There appear to be more than one bookmarks folder named #{bookmarks_folder}.\n\n" +
+            'In order for Bookmarklet IDE to work, it needs to know where to store the bookmarklets.\n' +
+            'Please fix this by either by deleting one of them, or by opening' +
             ' this extensions options page and changing the folder name.'
           @set_property('bookmarklets_dir', null)
 

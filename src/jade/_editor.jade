@@ -2,47 +2,43 @@ doctype
 html
   head
     script(type='application/javascript' src='assets/js/settings.js')
-    include _assets
+    script(type='application/javascript' src='assets/third-party/jquery/jquery.min.js')
+
     include _foundation
+
+    meta(http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' blob: filesystem:")
+
     block title
     link(rel='stylesheet' href='assets/css/editor.css')
-    script(type='application/javascript' src='assets/third-party/codemirror/mode/javascript.js')
+    link(rel='stylesheet' href='assets/third-party/vs/editor/editor.main.css')
+
+    script(type='application/javascript' src='assets/third-party/vs/loader.js')
     script(type='application/javascript' src='assets/js/formatter.js')
-  body#ide-editor
-    header#ide-editor-header.row
-      //a#ide-editor-btn-close.float-right
-      //  span.icon.fa.fa-close
-      img(src='assets/images/ide-logo-512.png')#ide-editor-logo.float-left
-      #ide-editor-file-container.row
-        //div#ide-editor-file-location.small-2.large-2.columns Select
-        //div#ide-editor-file-separator.small-4.large-1.columns /
-        span.small-6.large-8.columns
-          input#ide-editor-file-name(type='text' value='Untitled')
+    script(type='application/javascript' src='assets/js/ide.js')
+  body#ide-editor.grid-y.large-grid-frame
+    header#ide-editor-header.grid-x.cell.large-2.grid-margin-x
+      img(src='assets/images/ide-logo-512.png')#ide-editor-logo.cell.large-2
+      #ide-editor-file-container.cell.large-8
+        input#ide-editor-file-name(type='text' value='Untitled')
 
-    aside#ide-editor-options.float-right.row.large-2
-      a#ide-editor-btn-save.button
-        span.icon.fa.fa-save
-        | &nbsp;Save
+      #ide-editor-top-controls.button-group.cell.auto
+        // Play button
+        a#ide-editor-btn-run.button
+          span.icon.fa.fa-play(title="Run bookmarklet now")
 
-      br
-      a#ide-editor-btn-formatfile.button
-        span.icon.fa.fa-paint-brush
-        | &nbsp;Format File
+        // Format File button
+        a#ide-editor-btn-formatfile.button
+          span.icon.fa.fa-paint-brush(title="Beautify code")
 
-      br
-      a#ide-editor-btn-run.button
-        span.icon.fa.fa-play
-        | &nbsp;Run
+        // Save bookmarklet button
+        a#ide-editor-btn-save.button
+          span.icon.fa.fa-save(title="Save bookmarklet")
 
-      br
-      a#ide-editor-lnk-editoroptions
-        | Options&nbsp;
-        span.icon.fa.fa-gear
+        a#ide-editor-lnk-editoroptions.clear.button
+          span.icon.fa.fa-gear
 
-
-    section.row.small-10
+    // Monaco Editor
+    section#ide-editor-code.grid-x.cell.large-expanded
       block content
-
-    //a.button.float-right Beautify
 
     script(type='application/javascript' src='assets/js/editor.js')
